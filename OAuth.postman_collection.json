@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "64708649-9c7f-42c2-994d-e5dce8cf9714",
+		"name": "OAuth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26550674"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tester3\",\r\n    \"role\": \"smart\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{localhost}}/user/createUser",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"user",
+						"createUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authorize",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}/oauth/authorize?client_id=test?state=secret",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "test?state=secret"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authenticate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}/oauth/authenticate",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"oauth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "0bc94880-09ac-450e-8d8c-80252da3cc72",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "653af561-3e52-40da-b1b7-506c0181b9e8",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "c1c947f41448a0acf853bb58ccef06289dd59d23",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://test.com/",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{localhost}}/oauth/token",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "37269a77b1bd948ef0327ddb4e63a818fcfec45c",
+			"type": "string"
+		}
+	]
+}
